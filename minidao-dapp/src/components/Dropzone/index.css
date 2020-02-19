@@ -1,0 +1,27 @@
+.Dropzone {
+  background-color: var(--color-5);
+  border: 2px dashed rgb(136, 136, 136);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.Highlight {
+  background-color: var(--color-1);
+}
+
+.Added-Highlight {
+  background-color: var(--color-4);
+}
+
+.Icon {
+  opacity: 0.3;
+  height: 64px;
+  width: 64px;
+}
+
+.FileInput {
+  display: none;
+}

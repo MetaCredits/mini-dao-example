@@ -1,0 +1,20 @@
+.info-box {
+  background-color: var(--color-3);
+  padding: 40px;
+  border-radius: 15px 50px;
+  box-shadow: 3px 5px 8px var(--color-1);
+  margin: 15px;
+  flex-grow: 1;
+  min-width: 45%;
+  color: black;
+}
+
+.info-box input {
+  border: 2px solid var(--color-1);
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.info-box input[type="text"] {
+  width: 70%;
+}

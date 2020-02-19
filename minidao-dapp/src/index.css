@@ -1,0 +1,38 @@
+
+html *
+{
+  font-family: 'Rubik', sans-serif;
+}
+
+/* color scheme */
+/* :root {
+  --color-1: #273845;
+  --color-2: #364a5a;
+  --color-3: #58aa4f;
+  --color-4: #93cd8a;
+  --color-5: #dce6ee;
+} */
+
+
+/* :root {
+  --color-1: rgba(13, 19, 33, 1);
+  --color-2: rgba(255, 237, 223, 1);
+  --color-3: rgba(197, 216, 109, 1);
+  --color-4: rgba(134, 97, 92, 1);
+  --color-5: rgba(175, 224, 206, 1);
+}
+
+:root {
+  --color-1: rgba(72, 60, 70, 1);
+  --color-2: rgba(60, 110, 113, 1);
+  --color-3: rgba(197, 216, 109, 1);
+  --color-4: rgba(112, 174, 110, 1);
+  --color-5: rgba(244, 116, 59, 1);
+} */
+:root {
+  --color-1: rgba(115, 75, 94, 1);  
+  --color-2: rgba(86, 88, 87, 1);
+  --color-3: rgba(188, 189, 192, 1); 
+  --color-4: rgba(245, 211, 200, 1); 
+  --color-5: rgba(138, 141, 145, 1);
+}

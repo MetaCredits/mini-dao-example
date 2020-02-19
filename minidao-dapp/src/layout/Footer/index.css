@@ -1,0 +1,12 @@
+.footer-div {
+    background-color: #bd0d00;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    font-size: 15px;
+    color: white;
+    padding-left: 20px;
+  }
+

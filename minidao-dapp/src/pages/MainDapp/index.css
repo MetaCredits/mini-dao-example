@@ -1,0 +1,12 @@
+
+.tp-title {
+    align-self: center;
+}
+.display-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.info-box:hover {
+    box-shadow: 3px 5px 8px  #000000;
+}

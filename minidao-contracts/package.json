@@ -1,0 +1,23 @@
+{
+  "name": "metacred-minidao-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "./untruffle/compile.sh; node ./untruffle/buildContractJSON.js",
+    "deploy": "node ./deploy"
+  },
+  "author": "JoeBernitt",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^4.0.44",
+    "module-alias": "^2.2.2"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@contracts": "build/contracts",
+    "@deployed": "build/deployed",
+    "@utils": "untruffle/utils"
+  }
+}

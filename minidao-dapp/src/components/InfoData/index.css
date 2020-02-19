@@ -1,0 +1,30 @@
+
+.token-data-div {
+    background-color:var(--color-4);
+    padding: 40px;
+    border-radius: 15px 50px;
+    box-shadow: 3px 5px 8px  var(--color-1);
+    color: var(--color-1)
+    /* border: 2px solid rgb(0, 0, 0); */
+}
+
+
+.token-data-div:hover {
+    box-shadow: 3px 5px 8px  #000000;
+}
+
+
+.token-inner-data-div {
+    columns: 100px 2;
+}
+
+.token-data-label {
+    font-weight:bold
+}
+
+.token-data-title {
+    font-weight:bold;
+    font-size: 25px;
+    display: block;
+    margin-bottom: 10px;
+}

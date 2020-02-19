@@ -1,0 +1,14 @@
+.home-page-div {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.home-page-div a {
+    color: var(--color-1);
+    text-decoration: none;
+}
+
+.home-page-div a:hover {
+    color: var(--color-2);
+    text-decoration: none;
+}
