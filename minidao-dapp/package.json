@@ -10,7 +10,7 @@
     "axios": "^0.19.2",
     "ethers": "^4.0.42",
     "hash-source": "^1.0.4",
-    "meta-ethers": "rapid-eth/meta-ethers",
+    "meta-ethers": "rapid-eth/meta-ethers#v0.1",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
