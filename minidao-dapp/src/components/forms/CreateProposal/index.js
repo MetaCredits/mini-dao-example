@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { metaEthers } from "../../../web3/web3Utils";
 import InfoBoxWrap from "../InfoBoxWrap"
 import axios from "axios"
-import DappFunderJSON from "../../../contracts/local/DappFunder.json";
-import MetaProxyJSON from "../../../contracts/local/MetaProxy.json";
+
 class CreateForm extends Component {
     constructor(props) {
         super(props);
@@ -11,6 +10,7 @@ class CreateForm extends Component {
             amount: null,
             isMember: false,
             metadata: null,
+            txHash:null
 
         };
 
@@ -20,11 +20,11 @@ class CreateForm extends Component {
     }
 
     async componentDidMount() {
-        let isMember = await this.props.contract.members(window.ethereum.selectedAddress)
+        let isMember = await this.props.miniDAOContract.members(window.ethereum.selectedAddress)
         this.setState({ isMember });
 
         let ms = new metaEthers.providers.MetaSigner(this.props.provider, window.ethereum.selectedAddress)
-        let metaMiniContract = new metaEthers.MetaContract(this.props.contract.address, this.props.contract.interface, ms)
+        let metaMiniContract = new metaEthers.MetaContract(this.props.miniDAOContract.address, this.props.miniDAOContract.interface, ms)
 
         this.setState({ metaMiniContract });
         let balanceBN = await this.props.provider.getBalance(window.ethereum.selectedAddress)
@@ -63,30 +63,21 @@ class CreateForm extends Component {
             const { metadata } = this.state
 
             let raw = await this.state.metaMiniContract.submitProposal(metadata)
-            console.log("raw metatx", raw)
             let lambadurl = "https://m2r4h61qui.execute-api.us-east-1.amazonaws.com/prod/ethdenver-dapp-signer"
-            let data = await axios.post(lambadurl, { metaTx: raw })
-            console.log("data from post", data)
 
-            //Will not work if local...mock service with a hardcoded local key
-            // let lambadurl2 = "https://m2r4h61qui.execute-api.us-east-1.amazonaws.com/prod/ethdenver-relay-pool"
-            // let data2 = await axios.post(lambadurl2, { metaTx: raw, signature: data.data.signature})
+            let data = await axios.post(lambadurl, { metaTx: raw })
+
+            let localMetaProxyAddr =  await this.props.miniDAOContract.metaTxProxyContract()
+            let abiMTX = await this.props.dappFunder.abiEncodeMetaTransction(localMetaProxyAddr, raw)
 
             let sig = data.data.signature
+            //Will not work if local...mock service with a hardcoded local key
+            let lambadurl2 = "https://m2r4h61qui.execute-api.us-east-1.amazonaws.com/prod/ethdenver-relay-pool"
+            let data2 = await axios.post(lambadurl2, { encodedMTX: abiMTX, signature: sig})
 
-            let localMetaProxy = MetaProxyJSON.networks['5777'].address
-            let localDFAddress = DappFunderJSON.networks['5777'].address
-            
-            let pk = "0x985cd01f352f32d8501aa7637d91fa1a30fd240d99d012b13f2b09926ac8d46d"
+            console.log(data2.data)
+            this.setState({ metaTxCreated: true, signature: sig, raw: abiMTX, txHash: data2.data.tx.hash});
 
-            let wallet = new metaEthers.Wallet(pk, this.props.provider)
-            let localDappFunderContract = new metaEthers.Contract(localDFAddress, DappFunderJSON.abi, wallet)
-
-            let abiMTX = await localDappFunderContract.abiEncodeMetaTransction(localMetaProxy, raw)
-
-            let tx = await localDappFunderContract.executeMetaTransaction(abiMTX,sig, {gasLimit:5000000})
-            console.log(tx)
-            this.setState({ metaTxCreated: true, signature: sig, raw: abiMTX });
 
         } catch (err) {
             console.log(err)
@@ -94,7 +85,6 @@ class CreateForm extends Component {
         }
 
     };
-
 
     render() {
         return (
@@ -110,13 +100,11 @@ class CreateForm extends Component {
                     <br></br>
                     <input type="submit" value="Submit" disabled={!this.state.isMember} />
                 
-                    {this.state.metaTxCreated ?
+                    {this.state.txHash ?
                         <div>
-                            <label>Signature:</label>
-                            <p>{this.state.signature}</p>
-                            <br></br>
-                            <label>Raw Transaction:</label>
-                            <p>{this.state.raw}</p>
+                            <label>Transaction:</label>
+                            <p><a href={"http://rinkeby.etherscan.io/tx/" + this.state.txHash}>https://rinkeby.etherscan.io/tx/{this.state.txHash}</a></p>
+
                         </div> : <></>}
                 </form>
             </InfoBoxWrap>

@@ -25,14 +25,14 @@ class MainDapp extends Component {
   render() {
     return (
       <div>
-        <InfoData contract={this.props.contract} dappFunder={this.props.dappFunder} provider={this.props.provider} />
+        <InfoData miniDAOContract={this.props.miniDAOContract} dappFunder={this.props.dappFunder} provider={this.props.provider} />
         <div className="display-row">
-          <JoinForm contract={this.props.contract} provider={this.props.provider} signer={this.props.signer} />
-          <CreateProposal contract={this.props.contract} provider={this.props.provider} signer={this.props.signer} />
+          <JoinForm miniDAOContract={this.props.miniDAOContract} dappFunder={this.props.dappFunder} provider={this.props.provider} signer={this.props.signer} />
+          <CreateProposal miniDAOContract={this.props.miniDAOContract} dappFunder={this.props.dappFunder} provider={this.props.provider} signer={this.props.signer} />
         </div>
         <div className="display-row">
-          <MemberList memberList={this.props.memberList} contract={this.props.contract} provider={this.props.provider} />
-          <ProposalList propList={this.props.proposalList} contract={this.props.contract} provider={this.props.provider} />
+          <MemberList memberList={this.props.memberList} miniDAOContract={this.props.miniDAOContract} provider={this.props.provider} />
+          <ProposalList propList={this.props.proposalList} miniDAOContract={this.props.miniDAOContract} provider={this.props.provider} />
         </div>
       </div>
     );
@@ -49,7 +49,7 @@ const Dapp = (props) => (
       }
       return (
         <div>
-          <MainDapp tokenAddress={props.pid} dappFunder={dappFunderContract} contract={miniDAOContract} networkId={networkId} signer={signer} provider={provider} memberList={memberList} proposalList={proposalList} />
+          <MainDapp tokenAddress={props.pid} dappFunder={dappFunderContract} miniDAOContract={miniDAOContract} networkId={networkId} signer={signer} provider={provider} memberList={memberList} proposalList={proposalList} />
         </div>
       )
     }}

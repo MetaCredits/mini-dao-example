@@ -27,7 +27,7 @@ class InfoData extends Component {
   async getContractValue(fname) {
     let v
     try {
-      let s = await this.props.contract[fname]()
+      let s = await this.props.miniDAOContract[fname]()
       v = s.toString()
     } catch (error) {
       v = false
@@ -42,7 +42,7 @@ class InfoData extends Component {
       let memberCount = await this.getContractValue("totalMembers")
       let proposalCount = await this.getContractValue("totalProposals")
       let owner = await this.getContractValue("owner")
-      let memstat = await this.props.contract.members(window.ethereum.selectedAddress)
+      let memstat = await this.props.miniDAOContract.members(window.ethereum.selectedAddress)
       let isMember = "You are a member"
       if (!memstat) {
         isMember = "Not a member"

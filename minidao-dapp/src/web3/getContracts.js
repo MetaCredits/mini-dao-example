@@ -4,12 +4,19 @@
 import MiniDAOLocal from "../contracts/local/MetaMiniDAO.json";
 import DappFunderLocal from "../contracts/local/DappFunder.json";
 
+
+import MiniDAORinkeby from "../contracts/rinkeby/MetaMiniDAO.json";
+import DappFunderRinkeby from "../contracts/rinkeby/DappFunder.json";
+
 const getContracts = (networkId) => {
+    console.log("getting contracts")
     let miniDAO;
     let dappFunder
     if (networkId === 4) {
-        miniDAO = MiniDAOLocal
-        miniDAO.address = MiniDAOLocal.networks[4].address
+        miniDAO = MiniDAORinkeby
+        miniDAO.address = MiniDAORinkeby.networks[4].address
+        dappFunder = DappFunderRinkeby
+        dappFunder.address = DappFunderRinkeby.networks[4].address
     }
     if (networkId === 5777) {
         miniDAO = MiniDAOLocal
